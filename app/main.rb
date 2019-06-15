@@ -83,7 +83,7 @@ class FlyingSheepHunt
             else
                 #if game.top_score > 0
                     outputs.labels << [ 580, 370, "Top Score: #{game.top_score}", 0, 0, 255, 255, 255 ]
-                    
+               
                 #end
 
                 outputs.labels << [ 580, 400, 'Click to start', 0, 0, 255, 255, 255 ]
@@ -132,6 +132,9 @@ class FlyingSheepHunt
             rejected = current - game.sheeps.length
 
             game.life_count -= rejected
+            if rejected > 0 && game.started
+                outputs.sounds << 'sounds/death.wav'
+            end
         end
 
         def calc_kill_sheep
@@ -139,6 +142,7 @@ class FlyingSheepHunt
                 return
             end
 
+            outputs.sounds << 'sounds/shot.wav'
             killed_this_frame = game.sheeps.find_all { |z| game.xhair_box.inside_rect? z.sprite }
             game.killed_sheeps_count += killed_this_frame.length
             game.sheeps = game.sheeps - killed_this_frame
