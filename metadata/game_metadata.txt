@@ -1,0 +1,6 @@
+devid=jasemagee
+devtitle=Jase Magee Limited
+gameid=flying-sheep-hunt
+gametitle=Flying Sheep Hunt
+version=0.1
+icon=metadata/icon.png
